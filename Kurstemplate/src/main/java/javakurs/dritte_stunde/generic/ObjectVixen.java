@@ -1,4 +1,4 @@
-package javakurs.DritteStunde.Generic;
+package javakurs.dritte_stunde.generic;
 
 public class ObjectVixen extends ObjectFox<Integer>
 {

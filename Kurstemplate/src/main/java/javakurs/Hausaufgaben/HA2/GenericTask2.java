@@ -1,7 +1,9 @@
 package javakurs.Hausaufgaben.HA2;
 
+import java.util.Arrays;
+
 @SuppressWarnings("LombokGetterMayBeUsed")
-public class GenericTask2<TYPE>
+public class GenericTask2<TYPE extends Comparable<TYPE>>
 {
    private final TYPE[] array;
 
@@ -18,5 +20,6 @@ public class GenericTask2<TYPE>
    public void sort()
    {
       //hier das Array sortieren
+      Arrays.sort(array);
    }
 }

@@ -1,7 +1,7 @@
 package javakurs.Hausaufgaben.HA2;
 
 // @formatter:off
-public class GenericTask6<TYPE>
+public class GenericTask6<TYPE extends GenericTask6.Animal & GenericTask6.Pet>
 {
    private TYPE object;
 

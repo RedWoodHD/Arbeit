@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ccc5d6f2-7662-4572-9c85-9751f6b7c85a" name="Changes" comment="Krustemplate in Git Hochladen.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Arbeit.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/ChainedNodesUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/ChainedNodesUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/ObjectBunny.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/ObjectBunny.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/ObjectFox.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/ObjectFox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/ObjectVixen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/ObjectVixen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/DritteStunde/Generic/Typ.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/dritte_stunde/generic/Typ.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/Übungen/Übung.java" beforeDir="false" afterPath="$PROJECT_DIR$/Kurstemplate/src/main/java/javakurs/Übungen/Übung.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RedWoodHD&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RedWoodHD/Arbeit.git&quot;,
+    &quot;accountId&quot;: &quot;2eb4cb99-ea01-4db8-8920-556372756b7e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="33mKXJ9UmKTSoFMmSOc5oA1trh2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Übung.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\EGA\Desktop\Java Kurs 2\Arbeit\Kurstemplate\.idea" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javakurs.zweite_stunde.Main" />
+      <module name="Arbeit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="javakurs.zweite_stunde.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Übung" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javakurs.Übungen.Übung" />
+      <module name="Arbeit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="javakurs.Übungen.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Übung" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ccc5d6f2-7662-4572-9c85-9751f6b7c85a" name="Changes" comment="" />
+      <created>1759916845450</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759916845450</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Krustemplate in Git Hochladen.">
+      <option name="closed" value="true" />
+      <created>1759917056917</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759917056917</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="Krustemplate in Git Hochladen." />
+    <option name="LAST_COMMIT_MESSAGE" value="Krustemplate in Git Hochladen." />
+  </component>
+</project>

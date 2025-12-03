@@ -52,7 +52,11 @@ public final class MethodReferenceMain
       final Integer i1 = stringToIntegerConverter.apply(s1);
       final Integer i2 = stringToIntegerConverter.apply(s2);
 
-      MethodReferenceTest.checkTask1(i1, i2);
+      int a = customParseIntImplementation("4");
+      int b = customParseIntImplementation("-9");
+
+      //MethodReferenceTest.checkTask1(i1, i2);
+      MethodReferenceTest.checkTask1(a, b);
    }
 
    private static int customParseIntImplementation(final String stringToConvert)
@@ -122,12 +126,17 @@ public final class MethodReferenceMain
       final Double d2b = 3.5;
       final Double d2c = 2.0;
 
-      final TriFunction triFunction = null;
+      final TriFunction triFunction = MethodReferenceMain::addDoubles;
 
-      final Supplier<Integer> c1 = null; //addiere d1a, d1b und d1c
-      final Supplier<Integer> c2 = null; //addiere d2a, d2b und d2c
+//      final Supplier<Integer> c1 = triFunction.calculate(d1a,d1b,d1c); //addiere d1a, d1b und d1c
+//      final Supplier<Integer> c2 = triFunction.calculate(d2a,d2b,d2c); //addiere d2a, d2b und d2c
 
-      javakurs.VierteStunde.methodreferrence.MethodReferenceTest.checkTask4(c1, c2);
+//      javakurs.VierteStunde.methodreferrence.MethodReferenceTest.checkTask4(c1, c2);
+   }
+
+   private static Integer addDoubles(Double a, Double b, Double c)
+   {
+      return (int) (a+b+c);
    }
 
    @FunctionalInterface

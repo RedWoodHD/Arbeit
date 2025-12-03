@@ -168,11 +168,11 @@ public final class LambdaMain
     */
    private static void task7()
    {
-      final Supplier<Integer> number6Supplier = null;
-      final Supplier<Boolean> booleanTrueSupplier = null;
+      final Supplier<Integer> number6Supplier = () -> 6;
+      final Supplier<Boolean> booleanTrueSupplier = () -> true;
 
-      final Integer i = null;
-      final Boolean b = null;
+      final Integer i = number6Supplier.get();
+      final Boolean b = booleanTrueSupplier.get();
 
       LambdaTest.checkTask7(i, b);
    }

@@ -154,6 +154,8 @@ public final class AnonymousFilterMain
          }
       }); //null mit AnonymousFilter ersetzen
       AnonymousFilterTest.checkTask3(digitSumBiggerThan8);
+
+      System.out.println("");
    }
 
    /**

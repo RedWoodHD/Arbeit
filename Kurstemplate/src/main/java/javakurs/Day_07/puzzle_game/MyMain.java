@@ -2,8 +2,10 @@ package javakurs.Day_07.puzzle_game;
 
 import java.util.List;
 
-public final class MyMain {
-    public static void main(String[] args) {
+public final class MyMain
+{
+    public static void main(String[] args)
+    {
         // Dieser Startzustand sollte eine Lösung mit 12 Schritten finden
         final PuzzleState start = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 8, 6, 7, 0});
 
@@ -11,16 +13,20 @@ public final class MyMain {
         // final PuzzleState start = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 6, 8, 7, 0});
 
         final PuzzleSolver solver = new MyPuzzleSolver();
-        solve(solver, start);
+        System.out.println("solveWithGraph(solver, start);");
+        solveWithGraph(solver, start);
     }
 
-    private static void solve(final PuzzleSolver solver, final PuzzleState start) {
+    private static void solveWithGraph(final PuzzleSolver solver, final PuzzleState start)
+    {
         // Überraschung! Hier müsst ihr mal nicht das Prädikat aufrufen ... dafür müsst ihr es in eurer "solve"-Methode auswerten :-)
-        final List<Action> solutionList = solver.solve(start, ThreeByThreePuzzleStateArrayImplementation.DEFAULT_GOAL_STATE::equals);
+        final List<Action> solutionList = solver.solveWithGraph2(start, ThreeByThreePuzzleStateArrayImplementation.DEFAULT_GOAL_STATE::equals);
         // "null" bedeutet "keine Lösung"
-        if (solutionList != null) {
+        if (solutionList != null)
+        {
             PuzzleState currentState = start;
-            for (Action action : solutionList) {
+            for (Action action : solutionList)
+            {
                 currentState.show();
                 System.out.println();
                 System.out.println(action);
@@ -28,7 +34,33 @@ public final class MyMain {
             }
             currentState.show();
             System.out.println("Solution found with " + solutionList.size() + " steps.");
-        } else {
+        }
+        else
+        {
+            System.out.println("No solution found.");
+        }
+    }
+
+    private static void solve(final PuzzleSolver solver, final PuzzleState start)
+    {
+        // Überraschung! Hier müsst ihr mal nicht das Prädikat aufrufen ... dafür müsst ihr es in eurer "solve"-Methode auswerten :-)
+        final List<Action> solutionList = solver.solve(start, ThreeByThreePuzzleStateArrayImplementation.DEFAULT_GOAL_STATE::equals);
+        // "null" bedeutet "keine Lösung"
+        if (solutionList != null)
+        {
+            PuzzleState currentState = start;
+            for (Action action : solutionList)
+            {
+                currentState.show();
+                System.out.println();
+                System.out.println(action);
+                currentState = currentState.step(action);
+            }
+            currentState.show();
+            System.out.println("Solution found with " + solutionList.size() + " steps.");
+        }
+        else
+        {
             System.out.println("No solution found.");
         }
     }

@@ -22,7 +22,7 @@ public final class MyPuzzleSolver implements PuzzleSolver
         visited.add(initialState);
         workQueue.add(initialState);
 
-        if (goalState.equals(isGoal))
+        if (isGoal.test(initialState))
         {
             return List.of();
         }

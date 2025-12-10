@@ -1,4 +1,4 @@
-package javakurs.Day_07.puzzle_game;
+package javakurs.Hausaufgaben.HA3;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -13,9 +13,5 @@ interface PuzzleSolver {
      * @param isGoal       Prädikat, welches entscheidet, wann das Ziel erreicht ist
      */
     List<Action> solve(PuzzleState initialState, Predicate<PuzzleState> isGoal);
-
-    List<Action> solveWithGraph(PuzzleState initialState, Predicate<PuzzleState> isGoal);
-
-    List<Action> solveWithGraph2(PuzzleState initialState, Predicate<PuzzleState> isGoal);
 
 }

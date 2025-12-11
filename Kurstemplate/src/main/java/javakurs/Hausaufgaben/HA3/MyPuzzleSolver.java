@@ -45,8 +45,8 @@ public final class MyPuzzleSolver implements PuzzleSolver
 
             }
         }
-        System.out.println("Kanten haben wir: " + graph.countEdges());
-        System.out.println("Knoten haben wir: " + graph.countVertices());
+//        System.out.println("Kanten haben wir: " + graph.countEdges());
+//        System.out.println("Knoten haben wir: " + graph.countVertices());
     }
 
     @Override

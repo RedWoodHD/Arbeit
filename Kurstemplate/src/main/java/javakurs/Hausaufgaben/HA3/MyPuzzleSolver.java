@@ -1,7 +1,6 @@
 package javakurs.Hausaufgaben.HA3;
 
-import javakurs.Day_07.puzzle_game.Graph;
-import javakurs.Day_07.puzzle_game.ThreeByThreePuzzleStateArrayImplementation;
+import javakurs.Day_07.puzzle_game.GraphTest;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -12,29 +11,29 @@ import java.util.function.Predicate;
 public final class MyPuzzleSolver implements PuzzleSolver
 {
 
-    javakurs.Day_07.puzzle_game.Graph<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Action> graph;
+    Graph<PuzzleState, Action> graph;
 
     public MyPuzzleSolver()
     {
-        graph = new javakurs.Day_07.puzzle_game.Graph<>();
-        final Map<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Graph<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Action>.Vertex> vertexMap = new HashMap<>();
-        final Queue<javakurs.Day_07.puzzle_game.PuzzleState> queue = new LinkedList<>();
-        final Set<javakurs.Day_07.puzzle_game.PuzzleState> marker = new HashSet<>();
-        final javakurs.Day_07.puzzle_game.PuzzleState startingPointWhereWeConstruateTheGraph = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 8, 6, 7, 0});
+        graph = new Graph<>();
+        final Map<PuzzleState, Graph<PuzzleState, Action>.Vertex> vertexMap = new HashMap<>();
+        final Queue<PuzzleState> queue = new LinkedList<>();
+        final Set<PuzzleState> marker = new HashSet<>();
+        final PuzzleState startingPointWhereWeConstruateTheGraph = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 8, 6, 7, 0});
 
-        javakurs.Day_07.puzzle_game.Graph<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Action>.Vertex startVertex = graph.createVertex(startingPointWhereWeConstruateTheGraph);
+        Graph<PuzzleState, Action>.Vertex startVertex = graph.createVertex(startingPointWhereWeConstruateTheGraph);
         vertexMap.put(startingPointWhereWeConstruateTheGraph, startVertex);
         marker.add(startingPointWhereWeConstruateTheGraph);
         queue.add(startingPointWhereWeConstruateTheGraph);
 
         while (!queue.isEmpty())
         {
-            final javakurs.Day_07.puzzle_game.PuzzleState currentState = queue.poll();
-            for (javakurs.Day_07.puzzle_game.Action currentAction : currentState.possibleActions())
+            final PuzzleState currentState = queue.poll();
+            for (Action currentAction : currentState.possibleActions())
             {
-                javakurs.Day_07.puzzle_game.PuzzleState nextState = currentState.step(currentAction);
-                javakurs.Day_07.puzzle_game.Graph<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Action>.Vertex currentVertex = vertexMap.get(currentState);
-                Graph<javakurs.Day_07.puzzle_game.PuzzleState, javakurs.Day_07.puzzle_game.Action>.Vertex nextVertex = vertexMap.get(nextState);
+                PuzzleState nextState = currentState.step(currentAction);
+                Graph<PuzzleState, Action>.Vertex currentVertex = vertexMap.get(currentState);
+                Graph<PuzzleState, Action>.Vertex nextVertex = vertexMap.get(nextState);
                 if (nextVertex == null)
                 {
                     nextVertex = graph.createVertex(nextState);
@@ -53,97 +52,80 @@ public final class MyPuzzleSolver implements PuzzleSolver
     @Override
     public List<Action> solve(PuzzleState initialState, Predicate<PuzzleState> isGoal)
     {
-        // Wenn wir schon am Ziel sind, brauchen wir nicht zu suchen (das war Philips Idee, ich hatte den Aspekt übersehen)
         if (isGoal.test(initialState))
         {
             return List.of();
         }
 
-        // Die Parent-Funktion, damit wir die Zugreihenfolge backtracen können
-        final Map<PuzzleState, PuzzleState> parent = new HashMap<>();
-
-        // Die Parent-Action-Funktion, damit wir die tatsächlichen Actions ermitteln können
-        final Map<PuzzleState, Action> actionFromParent = new HashMap<>();
-
-        // Der Puffer
-        final Queue<PuzzleState> buffer = new LinkedList<>();
-
-        // Der Marker
-        final Set<PuzzleState> marker = new HashSet<>();
-
-        // Der gefundene Zielzustand um die Suche frühzeitig abbrechen zu können
-        PuzzleState foundGoalState = null;
-
-        // Wir initialisieren sowohl den Marker, als auch den Puffer mit unserem Startzustand
-        marker.add(initialState);
-        buffer.add(initialState);
-
-        // Wenn wir schon ein Ziel gefunden haben, hören wir auf, ansonsten suchen wir solange, bis der Puffer leer ist
-        while (foundGoalState == null && !buffer.isEmpty())
+        Graph<PuzzleState, Action>.Vertex startingPoint = null;
+        List<Graph<PuzzleState, Action>.Vertex> vertexList = graph.getVertexStream().toList();
+        for (Graph<PuzzleState, Action>.Vertex currentVertex : vertexList)
         {
-            // Wir ziehen uns den nächsten Zustand aus dem Puffer
-            final PuzzleState currentState = buffer.poll();
-
-            // Wir iterieren über alle möglichen Folgezustände (hier: Kombination aus Action und PuzzleState)
-            for (final Action nextAction : currentState.possibleActions())
+            if (currentVertex.getValue().equals(initialState))
             {
-                final PuzzleState nextState = currentState.step(nextAction);
+                startingPoint = currentVertex;
+                break;
+            }
+        }
+        if (!vertexList.contains(startingPoint))
+        {
+            throw new IllegalArgumentException("Der Startpunkt ist nicht im Graphen vorhanden");
+        }
+        final Map<Graph<PuzzleState, Action>.Vertex, Graph<PuzzleState, Action>.Vertex> parent = new HashMap<>();
+        final Map<Graph<PuzzleState, Action>.Vertex, Action> actionFromParent = new HashMap<>();
+        // BFS Strukturen
+        final Queue<Graph<PuzzleState, Action>.Vertex> queue = new LinkedList<>();
+        final Set<Graph<PuzzleState, Action>.Vertex> visited = new HashSet<>();
 
-                // Wenn wir bereits hier waren, ignorieren wir den Zustand
-                if (marker.contains(nextState))
+        visited.add(startingPoint);
+        queue.add(startingPoint);
+
+        Graph<PuzzleState, Action>.Vertex foundGoalVertex = null;
+
+        while (!queue.isEmpty())
+        {
+            Graph<PuzzleState, Action>.Vertex currentVertex = queue.poll();
+            for (Graph<PuzzleState, Action>.Edge currentEdge : currentVertex.getIncidenceOutStream().toList())
+            {
+                Graph<PuzzleState, Action>.Vertex omegaVertex = currentEdge.getOmega();
+
+                // schon besucht?
+                if (visited.contains(omegaVertex))
                 {
                     continue;
                 }
+                visited.add(omegaVertex);
+                parent.put(omegaVertex, currentVertex);             // woher komme ich?
+                actionFromParent.put(omegaVertex, currentEdge.getValue()); // welche Action war das?
+                queue.add(omegaVertex);
 
-                // Wenn wir noch nicht hier waren, bearbeiten wir den Zustand
-
-                // Wir waren jetzt "da"
-                marker.add(nextState);
-
-                // Wir nehmen den Zustand in die Parent-Funktion auf. Wichtig: Hier müssen wir das rückwärts setzen
-                parent.put(nextState, currentState);
-
-                // Ähnlich verfahren wir mit den Actions
-                actionFromParent.put(nextState, nextAction);
-
-                // Zuletzt muss der Zustand noch in den Puffer, damit wir später auch seine Folgezustände bearbeiten können
-                buffer.add(nextState);
-
-                // Wenn wir bereits am Ziel sind, brechen wir ab
-                if (isGoal.test(nextState))
+                if (isGoal.test(omegaVertex.getValue()))
                 {
-                    foundGoalState = nextState;
+                    foundGoalVertex = omegaVertex;
+                    queue.clear();
                     break;
                 }
             }
         }
-
-        // Wenn wir nichts gefunden haben, liefern wir "null", gemäß Spezifikation des Interfaces
-        if (foundGoalState == null)
+        if (foundGoalVertex == null)
         {
-            return null;
+            return null; // Kein Ziel gefunden (sollte bei 8-Puzzle nie passieren)
         }
+        // 4. Backtrack vom Ziel zum Start
+        LinkedList<Action> result = new LinkedList<>();
+        Graph<PuzzleState, Action>.Vertex track = foundGoalVertex;
 
-        // Wir berechnen die Ergebnisliste
-        final List<Action> result = new LinkedList<>();
-
-        // initialState (da komm ich her)
-        // foundGoalState (da bin ich jetzt)
-
-        PuzzleState trackBack = foundGoalState; // wo bin ich gerade?
-
-        // Wir navigieren rückwärts durch das Ergebnis von foundGoalState zu initialState und schreiben die Actions dahin mit
-        while (!initialState.equals(trackBack))
+        while (track != null && !track.equals(startingPoint))
         {
-            // Wir fügen die Actions vorne ein, weil wir ja rückwärts gehen, die Zugfolge aber gerne vorwärts hätten.
-            // Hier ist es wichtig eine LinkedList zu nehmen. Eine ArrayList wäre ineffizient.
-            // Alternativ könnte man auch einfach "add" aufrufen und die Liste am Ende einmal reversen.
-            result.addFirst(actionFromParent.get(trackBack));
-
-            // Das hier ist die fortgeschrittenere Variante von "i--" in einer Schleife.
-            trackBack = parent.get(trackBack);
+            Action a = actionFromParent.get(track);
+            if (a == null)
+            {
+                return null; // Kein Weg zum Start – nie unendlich loopen!
+            }
+            result.addFirst(a);
+            track = parent.get(track);
         }
-
         return result;
     }
+
 }

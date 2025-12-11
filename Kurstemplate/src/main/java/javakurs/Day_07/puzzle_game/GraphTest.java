@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  * @param <V> Der Wertetyp der Knoten
  * @param <E> Der Wertetyp der Kanten
  */
-public final class Graph<V, E> {
+public final class GraphTest<V, E> {
 
     /**
      * Die Knotenliste
@@ -85,8 +85,8 @@ public final class Graph<V, E> {
         /**
          * Liefert das Graph-Objekt, zu dem dieser Knoten gehört.
          */
-        public Graph<V, E> getGraph() {
-            return Graph.this;
+        public GraphTest<V, E> getGraph() {
+            return GraphTest.this;
         }
     }
 
@@ -119,8 +119,8 @@ public final class Graph<V, E> {
         /**
          * Liefert das Graph-Objekt, zu dem diese Kante gehört.
          */
-        public Graph<V, E> getGraph() {
-            return Graph.this;
+        public GraphTest<V, E> getGraph() {
+            return GraphTest.this;
         }
     }
 

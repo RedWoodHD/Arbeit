@@ -10,16 +10,16 @@ import java.util.function.Predicate;
 
 public final class MyPuzzleSolver implements PuzzleSolver
 {
-    Graph<PuzzleState,Action> graph;
+    GraphTest<PuzzleState,Action> graph;
     public MyPuzzleSolver()
     {
-        graph = new Graph<>();
-        final Map<PuzzleState, Graph<PuzzleState, Action>.Vertex> vertexMap = new HashMap<>();
+        graph = new GraphTest<>();
+        final Map<PuzzleState, GraphTest<PuzzleState, Action>.Vertex> vertexMap = new HashMap<>();
         final Queue<PuzzleState> queue = new LinkedList<>();
         final Set<PuzzleState> marker = new HashSet<>();
         final PuzzleState startingPointWhereWeConstruateTheGraph = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 8, 6, 7, 0});
 
-        Graph<PuzzleState, Action>.Vertex startVertex = graph.createVertex(startingPointWhereWeConstruateTheGraph);
+        GraphTest<PuzzleState, Action>.Vertex startVertex = graph.createVertex(startingPointWhereWeConstruateTheGraph);
         vertexMap.put(startingPointWhereWeConstruateTheGraph, startVertex);
         marker.add(startingPointWhereWeConstruateTheGraph);
         queue.add(startingPointWhereWeConstruateTheGraph);
@@ -30,8 +30,8 @@ public final class MyPuzzleSolver implements PuzzleSolver
             for (Action currentAction : currentState.possibleActions())
             {
                 PuzzleState nextState = currentState.step(currentAction);
-                Graph<PuzzleState, Action>.Vertex currentVertex = vertexMap.get(currentState);
-                Graph<PuzzleState, Action>.Vertex nextVertex = vertexMap.get(nextState);
+                GraphTest<PuzzleState, Action>.Vertex currentVertex = vertexMap.get(currentState);
+                GraphTest<PuzzleState, Action>.Vertex nextVertex = vertexMap.get(nextState);
                 if (nextVertex == null)
                 {
                     nextVertex = graph.createVertex(nextState);

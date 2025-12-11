@@ -13,9 +13,4 @@ interface PuzzleSolver {
      * @param isGoal       Prädikat, welches entscheidet, wann das Ziel erreicht ist
      */
     List<Action> solve(PuzzleState initialState, Predicate<PuzzleState> isGoal);
-
-    List<Action> solveWithGraph(PuzzleState initialState, Predicate<PuzzleState> isGoal);
-
-    List<Action> solveWithGraph2(PuzzleState initialState, Predicate<PuzzleState> isGoal);
-
 }

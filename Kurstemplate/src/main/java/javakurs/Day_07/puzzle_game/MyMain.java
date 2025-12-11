@@ -13,14 +13,13 @@ public final class MyMain
         // final PuzzleState start = new ThreeByThreePuzzleStateArrayImplementation(new byte[]{1, 2, 3, 4, 5, 6, 8, 7, 0});
 
         final PuzzleSolver solver = new MyPuzzleSolver();
-        System.out.println("solveWithGraph(solver, start);");
         solveWithGraph(solver, start);
     }
 
     private static void solveWithGraph(final PuzzleSolver solver, final PuzzleState start)
     {
         // Überraschung! Hier müsst ihr mal nicht das Prädikat aufrufen ... dafür müsst ihr es in eurer "solve"-Methode auswerten :-)
-        final List<Action> solutionList = solver.solveWithGraph2(start, ThreeByThreePuzzleStateArrayImplementation.DEFAULT_GOAL_STATE::equals);
+        final List<Action> solutionList = solver.solve(start, ThreeByThreePuzzleStateArrayImplementation.DEFAULT_GOAL_STATE::equals);
         // "null" bedeutet "keine Lösung"
         if (solutionList != null)
         {

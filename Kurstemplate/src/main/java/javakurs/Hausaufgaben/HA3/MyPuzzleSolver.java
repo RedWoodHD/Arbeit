@@ -56,7 +56,6 @@ public final class MyPuzzleSolver implements PuzzleSolver
         {
             return List.of();
         }
-
         Graph<PuzzleState, Action>.Vertex startingPoint = null;
         List<Graph<PuzzleState, Action>.Vertex> vertexList = graph.getVertexStream().toList();
         for (Graph<PuzzleState, Action>.Vertex currentVertex : vertexList)
@@ -109,7 +108,7 @@ public final class MyPuzzleSolver implements PuzzleSolver
         }
         if (foundGoalVertex == null)
         {
-            return null; // Kein Ziel gefunden (sollte bei 8-Puzzle nie passieren)
+            return null;
         }
         // 4. Backtrack vom Ziel zum Start
         LinkedList<Action> result = new LinkedList<>();
@@ -117,12 +116,12 @@ public final class MyPuzzleSolver implements PuzzleSolver
 
         while (track != null && !track.equals(startingPoint))
         {
-            Action a = actionFromParent.get(track);
-            if (a == null)
+            Action currentAction = actionFromParent.get(track);
+            if (currentAction == null)
             {
-                return null; // Kein Weg zum Start – nie unendlich loopen!
+                return null;
             }
-            result.addFirst(a);
+            result.addFirst(currentAction);
             track = parent.get(track);
         }
         return result;
